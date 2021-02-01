@@ -11,12 +11,11 @@ $ npm i reigner
 ## simple usage
 
 ```js
-var express = require('express');
-var path = require('path');
-var reigner = require('reigner');
+const reigner = require('reigner');
+const path = require('path');
 
-var application = express();
-var app = reigner.alterExpress(application);
+// this is wrapper for express.js
+const app = reigner();
 
 app.routers('/', path.join(__dirname, './routes'));
 
@@ -33,10 +32,10 @@ example, if we add these files
 
 the script now will equivalent with this
 ```js
-var express = require('express');
-var path = require('path');
+const express = require('express');
+const path = require('path');
 
-var app = express();
+const app = express();
 
 app.use('/', require('./routes/index'));
 app.use('/chicken', require('./routes/chicken'));
@@ -51,15 +50,15 @@ app.listen(3000);
 a simple tool if you think you are creating the same kind of routers repeatedly and the differences is only the resource (e.g. rest api)
 
 ```js
-var reigner = require('reigner');
+const reigner = require('reigner');
 
-var davidModel      = {name: 'David'};
-var reynoldModel    = {name: 'Reynold'};
+const davidModel      = {name: 'David'};
+const reynoldModel    = {name: 'Reynold'};
 
-var davidRouter = createRouter(davidModel);
-var reynoldRouter = createRouter(reynoldModel);
+const davidRouter = createRouter(davidModel);
+const reynoldRouter = createRouter(reynoldModel);
 
-var createRouter = reigner.routerMaker(function(router, resource) {
+const createRouter = reigner.routerMaker(function(router, resource) {
   router.get('/', function(req, res, next) {
     res.send(resource.name);
   });
@@ -72,13 +71,13 @@ var createRouter = reigner.routerMaker(function(router, resource) {
 that code will be equivalent with this
 
 ```js
-var express = require('express');
+const express = require('express');
 
-var davidRouter = express.Router();
-var reynoldRouter = express.Router();
+const davidRouter = express.Router();
+const reynoldRouter = express.Router();
 
-var davidModel      = { name: 'David' };
-var reynoldModel    = { name: 'Reynold' };
+const davidModel      = { name: 'David' };
+const reynoldModel    = { name: 'Reynold' };
 
 davidRouter.get('/', function(req, res, next) {
   res.send(davidModel.name);
@@ -102,14 +101,12 @@ reynoldRouter.get('/:change', function(req, res, next) {
 ## automatic resource routing
 
 ```js
-var express = require('express');
-var path = require('path');
-var reigner = require('reigner');
+const reigner = require('reigner');
+const path = require('path');
 
-var application = express();
-var app = reigner.alterExpress(application);
+const app = reigner();
 
-var createRouter = reigner.routerMaker(function(router, resource) {
+const createRouter = reigner.routerMaker(function(router, resource) {
   router.get('/', function(req, res, next) {
     res.send(resource.name);
   });
@@ -131,15 +128,15 @@ example, if we add these files
 
 now the script is equivalent with these
 ```js
-var express = require('express');
+const express = require('express');
 
-var app = express();
+const app = express();
 
-var davidResource = require('./models/david');
-var reynoldResource = require('./models/reynold');
+const davidResource = require('./models/david');
+const reynoldResource = require('./models/reynold');
 
-var davidRouter = express.Router();
-var reynoldRouter = express.Router();
+const davidRouter = express.Router();
+const reynoldRouter = express.Router();
 
 davidRouter.get('/', function(req, res, next) {
   res.send(davidResource.name);
