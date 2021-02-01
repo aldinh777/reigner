@@ -1,0 +1,19 @@
+{
+  "description": "Recursive Express Router Signer",
+  "name": "reigner",
+  "dependencies": {
+    "express": "^4.17.1",
+    "utils-merge": "^1.0.1"
+  },
+  "directories": {
+    "lib": "lib"
+  },
+  "homepage": "https://github.com/aldinh777/reigner#readme",
+  "license": "ISC",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aldinh777/reigner.git"
+  },
+  "version": "0.3.0"
+}
